@@ -1,0 +1,19 @@
+{
+  "name": "projeto-_4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "start": "node --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "node.js": "^0.0.1-security",
+    "pg": "^8.22.0"
+  }
+}
