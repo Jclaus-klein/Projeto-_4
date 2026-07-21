@@ -1,5 +1,5 @@
 // Importa o model, que e a camada responsavel por manipular os dados.
-import EquipamentoModel from "../model/equipamento.Model.js";
+import EquipamentoModel from "../models/equipamento.model.js";
 
 // O Controller e a camada responsavel por receber a requisicao,
 // chamar o model e devolver uma resposta HTTP.
@@ -174,7 +174,7 @@ class EquipamentoController {
   }
 
   // Controller da rota DELETE /excluir/:matricula.
-  static async excluirPorMatricula(requisicao, resposta) {
+  static async excluirPorNum_Pat(requisicao, resposta) {
     try {
       const num_pat = requisicao.params.num_pat;
 

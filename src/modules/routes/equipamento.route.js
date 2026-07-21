@@ -3,7 +3,7 @@ import express from "express";
 
 // Importa o controller de equipamentos.
 // Cada rota abaixo vai chamar um metodo desse controller.
-import EquipamentoController from "../controllers/equipamento.controller.js";
+import EquipamentoController from "../controller/equipamento.controller.js";
 
 // Cria um roteador.
 // O Router permite separar as rotas em arquivos menores e mais organizados.
@@ -16,7 +16,7 @@ router.get("/listar", EquipamentoController.listarTodos);
 // Rota para listar um equipamento especifico pelo numero de patrimonio.
 // O trecho :num_pat e um parametro de rota.
 // Exemplo: /listar/12345
-router.get("/listar/:num_pat", EquipamentoController.listarPorNumPat);
+router.get("/listar/:num_pat", EquipamentoController.listarPorNum_Pat);
 
 // Rota para cadastrar um novo equipamento.
 // Metodo POST e usado para criar um novo recurso.
@@ -34,5 +34,5 @@ router.patch("/editar/parcial/:num_pat", EquipamentoController.editarParcial);
 router.delete("/excluir/todos", EquipamentoController.excluirTodos);
 
 // Rota para excluir apenas um equipamento pelo numero de patrimonio.
-router.delete("/excluir/:num_pat", EquipamentoController.excluirPorNumPat);
+router.delete("/excluir/:num_pat", EquipamentoController.excluirPorNum_Pat);
 export default router;
