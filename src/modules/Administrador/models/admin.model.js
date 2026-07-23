@@ -17,6 +17,6 @@ class AdministradorModel {
     const dados = [email]
     const query = `select email from admins where email = $1`
     const resultado = await conexao.query(query, dados)
-    return Number(resultado.rows)
+    return resultado.rows
   }
 }
