@@ -107,3 +107,4 @@ class AdministradorController {
     }
   }
 }
+export default AdministradorController

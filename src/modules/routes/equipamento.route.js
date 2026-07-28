@@ -1,6 +1,6 @@
 // Importa o express para usar o recurso de Router.
 import express from "express";
-
+import AutenticacaoMiddleware from "../../middleware/autenticacao.middeware.js";
 // Importa o controller de equipamentos.
 // Cada rota abaixo vai chamar um metodo desse controller.
 import EquipamentoController from "../controller/equipamento.controller.js";
@@ -11,28 +11,28 @@ const router = express.Router();
 
 // Rota para listar todos os equipamentos.
 // Metodo GET e usado para buscar dados.
-router.get("/listar", EquipamentoController.listarTodos);
+router.get("/listar",AutenticacaoMiddleware.autenticar ,EquipamentoController.listarTodos);
 
 // Rota para listar um equipamento especifico pelo numero de patrimonio.
 // O trecho :num_pat e um parametro de rota.
 // Exemplo: /listar/12345
-router.get("/listar/:num_pat", EquipamentoController.listarPorNum_Pat);
+router.get("/listar/:num_pat", AutenticacaoMiddleware.autenticar,EquipamentoController.listarPorNum_Pat);
 
 // Rota para cadastrar um novo equipamento.
 // Metodo POST e usado para criar um novo recurso.
-router.post("/cadastrar", EquipamentoController.cadastrar);
+router.post("/cadastrar",AutenticacaoMiddleware.autenticar ,EquipamentoController.cadastrar);
 // Rota para editar completamente um equipamento.
 // Metodo PUT e usado quando queremos enviar todos os dados editaveis.
 router.put("/editar/total/:num_pat", EquipamentoController.editarTotal);
 
 // Rota para editar parcialmente um equipamento.
 // Metodo PATCH e usado quando queremos enviar apenas alguns campos.
-router.patch("/editar/parcial/:num_pat", EquipamentoController.editarParcial);
+router.patch("/editar/parcial/:num_pat",AutenticacaoMiddleware.autenticar ,EquipamentoController.editarParcial);
 
 // Esta rota precisa vir antes de /excluir/:num_pat.
 // Se viesse depois, a palavra "todos" poderia ser interpretada como um numero de patrimonio.
-router.delete("/excluir/todos", EquipamentoController.excluirTodos);
+router.delete("/excluir/todos",AutenticacaoMiddleware.autenticar ,EquipamentoController.excluirTodos);
 
 // Rota para excluir apenas um equipamento pelo numero de patrimonio.
-router.delete("/excluir/:num_pat", EquipamentoController.excluirPorNum_Pat);
+router.delete("/excluir/:num_pat",AutenticacaoMiddleware.autenticar ,EquipamentoController.excluirPorNum_Pat);
 export default router;
