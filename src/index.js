@@ -23,8 +23,8 @@ app.use(express.json());
 // Registra as rotas do modulo aluno na aplicacao.
 // Como nao foi usado prefixo, as rotas ficam diretamente em:
 // /listar, /cadastrar, /editar/total/:matricula, etc.
-app.use(router);
-app.use(routerAdmin);
+app.use("/equipamento", router);
+app.use("/admin", routerAdmin); 
 // Busca a porta definida no arquivo .env.
 // Se PORTA=3000, a API vai rodar em http://localhost:3000.
 const porta = process.env.PORTA;

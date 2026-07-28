@@ -5,8 +5,8 @@ import AdministradorModel from "../models/admin.model.js";
 class AdministradorController {
   static async cadastrar(requisicao, resposta) {
     try {
-      const { id, nome, email, senha } = requisicao.body;
-      if (!id || !nome || !email || senha) {
+      const {nome, email, senha } = requisicao.body;
+      if (!nome || !email || !senha) {
         return resposta
           .status(400)
           .json({ mensagem: "Todos os campos são obrigatórios" });

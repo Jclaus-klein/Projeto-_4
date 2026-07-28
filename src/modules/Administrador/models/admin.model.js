@@ -1,8 +1,8 @@
 import conexao from "../../../config/database.js";
 
 class AdministradorModel {
-  static async cadastrar(id, nome, email, senha) {
-    const dados = [id, nome, email, senha];
+  static async cadastrar(nome, email, senha) {
+    const dados = [nome, email, senha];
     const query = `insert into admins(id,nome,email,senha)
                     values($1,$2,$3,$4) returning*`
     const resultado = await conexao.query(query,dados)
@@ -20,3 +20,4 @@ class AdministradorModel {
     return resultado.rows
   }
 }
+export default AdministradorModel
