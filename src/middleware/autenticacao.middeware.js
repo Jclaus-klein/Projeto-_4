@@ -9,14 +9,14 @@ class AutenticacaoMiddleware {
 
     if (!token) {
       return resposta.status(401).json({ mensagem: "Acesso não autorizado!" });
-      jwt.verify(token, process.env.JWT_SECRET, (error, usuario) => {
-        if (error) {
-          return resposta.status(403).json({ mensagem: "Não Autorizado" });
-        }
-        requisicao.usuario = usuario
-        proximo()
-    });
     }
+    jwt.verify(token, process.env.JWT_SECRET, (error, usuario) => {
+      if (error) {
+        return resposta.status(403).json({ mensagem: "Não Autorizado" });
+      }
+      requisicao.usuario = usuario;
+      proximo();
+    });
   }
 }
-export default AutenticacaoMiddleware
+export default AutenticacaoMiddleware;

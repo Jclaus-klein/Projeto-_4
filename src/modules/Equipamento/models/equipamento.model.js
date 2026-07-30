@@ -1,5 +1,5 @@
 // Importa a conexão do banco pg
-import conexao from "../../config/database.js";
+import conexao from "../../../config/database.js";
 
 // O Model e a camada responsavel por lidar diretamente com os dados.
 //

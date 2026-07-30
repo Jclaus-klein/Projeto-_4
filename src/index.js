@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 
 // Importa as rotas do modulo de alunos.
 // Essas rotas ficam separadas para deixar o index.js mais limpo.
-import router from "./modules/routes/equipamento.route.js";
+import router from "./modules/Equipamento/routes/equipamento.route.js";
 import routerAdmin from "./modules/Administrador/routes/admin.route.js";
 // Carrega as variaveis do arquivo .env para dentro de process.env.
 // Exemplo: se no .env existir PORTA=3000, poderemos acessar process.env.PORTA.

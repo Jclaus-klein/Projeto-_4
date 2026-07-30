@@ -29,7 +29,7 @@ class EquipamentoController {
       // Isso evita cadastrar duas vezes o mesmo numero de patrimonio.
       const equipamentoJaExiste = EquipamentoModel.listarPorNumPat(num_pat);
 
-      if (equipamentoJaExiste) {
+      if (!equipamentoJaExiste) {
         return resposta
           .status(400)
           .json({ mensagem: "Ja existe um equipamento com esse numero de patrimonio!" });
@@ -40,7 +40,7 @@ class EquipamentoController {
       // Status 201 significa que um recurso foi criado com sucesso.
       return resposta.status(201).json({
         mensagem: "Cadastro realizado com sucesso!",
-        equipamento
+        equipamento,nome
       });
     } catch (error) {
       return resposta

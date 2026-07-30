@@ -11,11 +11,11 @@ class AdministradorController {
           .status(400)
           .json({ mensagem: "Todos os campos são obrigatórios" });
       }
-      const totalAdmin = await AdministradorModel.contarAdmins();
+      const totalAdmin = await AdministradorModel.verificaAdminsAtivos();
       if (totalAdmin > 0) {
         return resposta
           .status(409)
-          .json({ mensagem: "Administrador já existe" });
+          .json({ mensagem: "Exixte um Administrador cadastrado e ativo no sistema!" });
       }
       if (senha.length < 8) {
         return resposta
@@ -39,14 +39,14 @@ class AdministradorController {
       }
       const salt = bcrypt.genSaltSync(10);
       const hashSenha = bcrypt.hashSync(senha, salt);
-      await AdministradorModel.cadastrar(id, nome, email, (senha = hashSenha));
+      await AdministradorModel.cadastrar(nome, email, hashSenha);
       return resposta
         .status(201)
         .json({ mensagem: "Usuário Administrador criado com sucesso!" });
     } catch (error) {
       resposta
         .status(500)
-        .json({ mensagem: "Erro ao Cadastrar o Administrador" });
+        .json({ mensagem: "Erro ao Cadastrar o Administrador",erro:error.message });
     }
   }
   static async login(requisicao, resposta) {
@@ -58,7 +58,7 @@ class AdministradorController {
           .json({ mensagem: "Todos os campos são obrigatórios" });
       }
       const administrador = await AdministradorModel.buscarPorEmail(email);
-      if (administrador.length === 0) {
+      if (!administrador) {
         return resposta
           .status(400)
           .json({ mensagem: "Usuário não encontrado!" });
@@ -91,17 +91,18 @@ class AdministradorController {
       });
     } catch (error) {
       return resposta.status(500).json({
-        mensagem: "Erro ao tentar efetuar login!",
+        mensagem: "Erro ao tentar efetuar login!",erro:error.message,
       });
     }
   }
   static async perfil(requisicao, resposta){
     try{
-      const administrador = await AdministradorModel.buscarPorEmail(requisicao.administrador.email)
-      if(administrador === 0){
-        return resposta.status(409).json({mensagem:"Usuário precisa estar logado para acessar o perfil!"})
+      const idDoToken = requisicao.usuario.id
+      const administrador = await AdministradorModel.buscarPorId(idDoToken)
+      if(!administrador){
+        return resposta.status(404).json({mensagem:"Usuário não encontrado!"})
       }
-      resposta.status(200).json(administrador)
+     return resposta.status(200).json(administrador)
     }catch(error){
       resposta.status(500).json({mensagem: "Erro ao buscar perfil do usuário!", erro: error.message})
     }

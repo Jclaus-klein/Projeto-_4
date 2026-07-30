@@ -1,6 +1,6 @@
 // Importa o express para usar o recurso de Router.
 import express from "express";
-import AutenticacaoMiddleware from "../../middleware/autenticacao.middeware.js";
+import AutenticacaoMiddleware from "../../../middleware/autenticacao.middeware.js";
 // Importa o controller de equipamentos.
 // Cada rota abaixo vai chamar um metodo desse controller.
 import EquipamentoController from "../controller/equipamento.controller.js";
