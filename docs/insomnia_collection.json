@@ -1,0 +1,141 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-08-04T00:00:00.000Z",
+  "__export_source": "projeto-4.generator",
+  "resources": [
+    {
+      "_id": "wrk_1",
+      "_type": "workspace",
+      "name": "Projeto-_4 API",
+      "description": "Coleção gerada automaticamente com todas as rotas"
+    },
+    {
+      "_id": "req_equip_listar",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "GET /equipamento/listar",
+      "method": "GET",
+      "url": "http://localhost:3000/equipamento/listar",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_equip_listar_num",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "GET /equipamento/listar/:num_pat",
+      "method": "GET",
+      "url": "http://localhost:3000/equipamento/listar/P001",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_equip_cadastrar",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "POST /equipamento/cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/equipamento/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"num_pat\": \"P001\",\n  \"nome\": \"Notebook Dell\",\n  \"setor\": \"TI\",\n  \"estado\": \"Em uso\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "_id": "req_equip_put_editar_total",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "PUT /equipamento/editar/total/:num_pat",
+      "method": "PUT",
+      "url": "http://localhost:3000/equipamento/editar/total/P001",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Notebook Dell Atualizado\",\n  \"setor\": \"TI\",\n  \"estado\": \"Em manutencao\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "_id": "req_equip_patch_editar_parcial",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "PATCH /equipamento/editar/parcial/:num_pat",
+      "method": "PATCH",
+      "url": "http://localhost:3000/equipamento/editar/parcial/P001",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"estado\": \"Em manutencao\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "_id": "req_equip_delete_todos",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "DELETE /equipamento/excluir/todos",
+      "method": "DELETE",
+      "url": "http://localhost:3000/equipamento/excluir/todos",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_equip_delete_num",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "DELETE /equipamento/excluir/:num_pat",
+      "method": "DELETE",
+      "url": "http://localhost:3000/equipamento/excluir/P001",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_admin_cadastrar",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "POST /admin/cadastrar",
+      "method": "POST",
+      "url": "http://localhost:3000/admin/cadastrar",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Admin Teste\",\n  \"email\": \"admin@example.com\",\n  \"senha\": \"Abcdef1!\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "_id": "req_admin_login",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "POST /admin/login",
+      "method": "POST",
+      "url": "http://localhost:3000/admin/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"admin@example.com\",\n  \"senha\": \"Abcdef1!\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ]
+    },
+    {
+      "_id": "req_admin_perfil",
+      "_type": "request",
+      "parentId": "wrk_1",
+      "name": "GET /admin/perfil",
+      "method": "GET",
+      "url": "http://localhost:3000/admin/perfil",
+      "body": {},
+      "headers": [
+        { "name": "Authorization", "value": "Bearer <token_aqui>" }
+      ]
+    }
+  ]
+}

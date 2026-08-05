@@ -15,7 +15,7 @@ class AdministradorController {
       if (totalAdmin > 0) {
         return resposta
           .status(409)
-          .json({ mensagem: "Exixte um Administrador cadastrado e ativo no sistema!" });
+          .json({ mensagem: "Existe um Administrador cadastrado e ativo no sistema!" });
       }
       if (senha.length < 8) {
         return resposta

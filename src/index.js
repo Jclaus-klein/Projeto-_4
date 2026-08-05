@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 // Essas rotas ficam separadas para deixar o index.js mais limpo.
 import router from "./modules/Equipamento/routes/equipamento.route.js";
 import routerAdmin from "./modules/Administrador/routes/admin.route.js";
+import criarTabela from "./config/create_tables.js";
 // Carrega as variaveis do arquivo .env para dentro de process.env.
 // Exemplo: se no .env existir PORTA=3000, poderemos acessar process.env.PORTA.
 dotenv.config();
@@ -50,5 +51,6 @@ app.get("/", (requisicao, resposta) => {
 // Inicia o servidor na porta configurada.
 // A funcao dentro do listen roda quando o servidor sobe com sucesso.
 app.listen(porta, () => {
+  criarTabela()
   console.log(`O servidor esta em execucao na porta ${porta}!`);
 });
