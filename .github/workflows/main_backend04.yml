@@ -55,10 +55,9 @@ jobs:
         with:
           name: node-app
 
-      - name: Azure Login (OIDC)
+      - name: Azure Login
         uses: azure/login@v2
         with:
-          auth-type: 'oidc'
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6E1AE79A1C1945438423A16889AAD56E }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A2AF10156FB945158E50792DEA58B2DB }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_63EFEA90D581413E8458974382FD4EE8 }}
