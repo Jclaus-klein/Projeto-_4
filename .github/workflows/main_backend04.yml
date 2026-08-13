@@ -50,6 +50,7 @@ jobs:
     needs: build
     env:
       AZURE_PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_63EFEA90D581413E8458974382FD4EE8 }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZUREAPPSERVICE_CLIENTSECRET_6E1AE79A1C1945438423A16889AAD56E }}
 
     steps:
       - name: Download artifact from build job
@@ -58,12 +59,13 @@ jobs:
           name: node-app
 
       - name: Azure Login (service principal, conditional)
-        if: ${{ env.AZURE_PUBLISH_PROFILE == '' }}
+        if: ${{ env.AZURE_PUBLISH_PROFILE == '' && env.AZURE_CLIENT_SECRET != '' }}
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6E1AE79A1C1945438423A16889AAD56E }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A2AF10156FB945158E50792DEA58B2DB }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_63EFEA90D581413E8458974382FD4EE8 }}
+          client-secret: ${{ secrets.AZUREAPPSERVICE_CLIENTSECRET_6E1AE79A1C1945438423A16889AAD56E }}
 
       - name: 'Deploy to Azure Web App (publish profile or service principal)'
         id: deploy-to-webapp
