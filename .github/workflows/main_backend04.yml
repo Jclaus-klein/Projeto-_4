@@ -58,11 +58,12 @@ jobs:
         with:
           name: node-app
 
-      - name: Validate Azure credentials
+      - name: Validate Azure credentials (warning only)
         run: |
           if [ -z "$AZURE_PUBLISH_PROFILE" ] && [ -z "$AZURE_CLIENT_SECRET" ]; then
-            echo "ERROR: Nenhum credencial Azure encontrado. Adicione o segredo 'AZUREAPPSERVICE_PUBLISHPROFILE_63EFEA90D581413E8458974382FD4EE8' ou 'AZUREAPPSERVICE_CLIENTSECRET_6E1AE79A1C1945438423A16889AAD56E' em Settings → Secrets." >&2
-            exit 1
+            echo "WARNING: Nenhum credencial Azure encontrado. O passo de deploy será pulado. Para habilitar deploy, adicione o segredo 'AZUREAPPSERVICE_PUBLISHPROFILE_63EFEA90D581413E8458974382FD4EE8' ou 'AZUREAPPSERVICE_CLIENTSECRET_6E1AE79A1C1945438423A16889AAD56E' em Settings → Secrets."
+          else
+            echo "Azure credentials present. Proceeding to deploy step if conditions match."
           fi
 
       - name: Azure Login (service principal, conditional)
