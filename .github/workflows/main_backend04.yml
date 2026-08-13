@@ -1,27 +1,25 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy Node.js app to Azure Web App - backend04
+name: CI - Backend
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '24.x'
+          node-version: '24'
 
       - name: npm install, build, and test
         run: |
@@ -39,18 +37,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: node-app
-      
-      - name: Login to Azure
+
+      - name: Azure Login (OIDC)
         uses: azure/login@v2
         with:
+          auth-type: 'oidc'
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6E1AE79A1C1945438423A16889AAD56E }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A2AF10156FB945158E50792DEA58B2DB }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_63EFEA90D581413E8458974382FD4EE8 }}
@@ -62,4 +61,4 @@ jobs:
           app-name: 'backend04'
           slot-name: 'Production'
           package: .
-          
+>>>>>>> 325b816 (first commit)
