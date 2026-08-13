@@ -58,6 +58,13 @@ jobs:
         with:
           name: node-app
 
+      - name: Validate Azure credentials
+        run: |
+          if [ -z "$AZURE_PUBLISH_PROFILE" ] && [ -z "$AZURE_CLIENT_SECRET" ]; then
+            echo "ERROR: Nenhum credencial Azure encontrado. Adicione o segredo 'AZUREAPPSERVICE_PUBLISHPROFILE_63EFEA90D581413E8458974382FD4EE8' ou 'AZUREAPPSERVICE_CLIENTSECRET_6E1AE79A1C1945438423A16889AAD56E' em Settings → Secrets." >&2
+            exit 1
+          fi
+
       - name: Azure Login (service principal, conditional)
         if: ${{ env.AZURE_PUBLISH_PROFILE == '' && env.AZURE_CLIENT_SECRET != '' }}
         uses: azure/login@v2
@@ -68,6 +75,7 @@ jobs:
           client-secret: ${{ secrets.AZUREAPPSERVICE_CLIENTSECRET_6E1AE79A1C1945438423A16889AAD56E }}
 
       - name: 'Deploy to Azure Web App (publish profile or service principal)'
+        if: ${{ env.AZURE_PUBLISH_PROFILE != '' || env.AZURE_CLIENT_SECRET != '' }}
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
